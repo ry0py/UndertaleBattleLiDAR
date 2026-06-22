@@ -42,6 +42,16 @@ namespace UndertaleLiDAR.Battle
             }
         }
 
+        public void Heal(int amount)
+        {
+            if (amount <= 0 || _current <= 0)
+            {
+                return;
+            }
+            _current = Mathf.Min(_maxHp, _current + amount);
+            Changed?.Invoke(_current, _maxHp);
+        }
+
         public void ResetHealth()
         {
             _current = _maxHp;

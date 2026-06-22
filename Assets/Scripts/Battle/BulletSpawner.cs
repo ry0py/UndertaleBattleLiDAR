@@ -38,6 +38,20 @@ namespace UndertaleLiDAR.Battle
 
         public void SetActive(bool active) => _active = active;
 
+        /// <summary>盤面に残っている弾をすべて消す (敵ターン終了時に呼ぶ)。</summary>
+        public void ClearBullets()
+        {
+            if (_board == null)
+            {
+                return;
+            }
+            Bullet[] bullets = _board.GetComponentsInChildren<Bullet>(true);
+            foreach (Bullet b in bullets)
+            {
+                if (b != null) Destroy(b.gameObject);
+            }
+        }
+
         public Rect BoardLocalRect => _board.LocalRect;
         public Vector2 SoulLocalPosition => _soul.LocalPosition;
 
