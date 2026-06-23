@@ -80,6 +80,10 @@ namespace UndertaleLiDAR.Battle
                                        "キーボードのみで継続します。");
                         return null;
                     }
+                    // SCIP モジュールはシーン上では既定で無効化しておき、実機経路を選んだ時だけ
+                    // 有効化して接続させる。こうすることで Mock 等の実機なし開発時に
+                    // SCIPClient が接続を試みてタイムアウト例外を出すのを防ぐ。
+                    _scanPlane.transform.root.gameObject.SetActive(true);
                     return new ScanPlaneInputSource(_scanPlane, mapper);
 
                 case InputMode.HokuyoSerial:
