@@ -26,7 +26,10 @@ namespace UndertaleLiDAR.Battle
 
         private IBulletPattern _pattern;
 
-        private void Awake() => _pattern = new RandomRainPattern(_spawnInterval, _bulletSpeed);
+        private void Awake() =>
+            _pattern = new CompositePattern(
+                new RandomRainPattern(_spawnInterval, _bulletSpeed),
+                new AimedShotPattern(_spawnInterval * 3f, _bulletSpeed * 0.8f));
 
         private void Update()
         {

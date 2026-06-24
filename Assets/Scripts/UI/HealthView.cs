@@ -16,6 +16,19 @@ namespace UndertaleLiDAR.UI
         [Tooltip("Image Type=Filled を割り当てると残量ゲージになる (任意)")]
         [SerializeField] private Image _fill;
 
+        private void Awake()
+        {
+            // 角丸スプライトだとゲージが枠いっぱいに塗られないため、
+            // 角丸の無いソリッド矩形に差し替えて水平 Filled にする。
+            if (_fill != null)
+            {
+                _fill.sprite = RuntimeSprites.Solid;
+                _fill.type = Image.Type.Filled;
+                _fill.fillMethod = Image.FillMethod.Horizontal;
+                _fill.fillOrigin = (int)Image.OriginHorizontal.Left;
+            }
+        }
+
         private void OnEnable()
         {
             if (_health == null)

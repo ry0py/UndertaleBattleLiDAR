@@ -215,7 +215,7 @@ namespace UndertaleLiDAR.Battle
         {
             _spawner.SetActive(false);
             _spawner.ClearBullets();
-            if (_soul != null) _soul.gameObject.SetActive(false);
+            if (_soul != null) _soul.SetVisible(false);
             _dialogue.gameObject.SetActive(true);
         }
 
@@ -224,7 +224,7 @@ namespace UndertaleLiDAR.Battle
         {
             _dialogue.Clear();
             _dialogue.gameObject.SetActive(false);
-            if (_soul != null) _soul.gameObject.SetActive(true);
+            if (_soul != null) _soul.SetVisible(true);
             _spawner.SetActive(true);
         }
 
